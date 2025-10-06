@@ -1,5 +1,5 @@
 <?php
-$color = "merah";
+$color = "merah"; // untuk menyimpan warna 
 $color = "biru";
 $color = "hijau";
 

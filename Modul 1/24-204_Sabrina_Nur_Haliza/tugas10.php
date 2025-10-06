@@ -20,6 +20,7 @@
 </head>
 <body>
 <?php
+// Mendefinisikan variabel biodata
 $nama = "Sabrina Nur Haliza";
 $nim = "240411100204";
 $kelas = "IF-3B";
