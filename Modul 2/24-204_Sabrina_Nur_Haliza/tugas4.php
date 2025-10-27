@@ -1,7 +1,7 @@
 <?php
-$favcolor = "red";
+$favcolor = "red"; // untuk menyimpan warna favorit
 
-switch ($favcolor) {
+switch ($favcolor) { // untuk memilih aksi berdasarkan nilai $favcolor
     case "red":
         echo "your favorite color is red!";
         break;
