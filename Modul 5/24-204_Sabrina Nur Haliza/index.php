@@ -1,6 +1,6 @@
 <?php
 include 'koneksi.php';
-$query = mysqli_query($koneksi, "SELECT * FROM supplier");
+$query = mysqli_query($koneksi, "SELECT * FROM supplier ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,7 @@ $query = mysqli_query($koneksi, "SELECT * FROM supplier");
     <div style="text-align:center; margin-bottom:10px;">
         <a href="tambah.php" class="button">Tambah Data</a>
     </div>
+
     <table>
         <tr>
             <th>No</th>
@@ -33,18 +34,22 @@ $query = mysqli_query($koneksi, "SELECT * FROM supplier");
         </tr>
         <?php
         $no = 1;
-        while ($data = mysqli_fetch_assoc($query)) {
-            echo "<tr>
-                    <td>$no</td>
-                    <td>{$data['nama']}</td>
-                    <td>{$data['telp']}</td>
-                    <td>{$data['alamat']}</td>
-                    <td>
-                        <a href='edit.php?id={$data['id']}' class='button edit'>Edit</a>
-                        <a href='hapus.php?id={$data['id']}' class='button hapus' onclick='return confirm(\"Yakin hapus data ini?\")'>Hapus</a>
-                    </td>
-                  </tr>";
-            $no++;
+        if (mysqli_num_rows($query) > 0) {
+            while ($data = mysqli_fetch_assoc($query)) {
+                echo "<tr>
+                        <td>$no</td>
+                        <td>" . htmlspecialchars($data['nama']) . "</td>
+                        <td>" . htmlspecialchars($data['telp']) . "</td>
+                        <td>" . htmlspecialchars($data['alamat']) . "</td>
+                        <td>
+                            <a href='edit.php?id={$data['id']}' class='button edit'>Edit</a>
+                            <a href='hapus.php?id={$data['id']}' class='button hapus' onclick='return confirm(\"Yakin hapus data ini?\")'>Hapus</a>
+                        </td>
+                      </tr>";
+                $no++;
+            }
+        } else {
+            echo "<tr><td colspan='5' align='center'>Belum ada data supplier.</td></tr>";
         }
         ?>
     </table>
